@@ -1,0 +1,500 @@
+# kai_inference_builder.StatisticsApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_stats_plugins**](StatisticsApi.md#create_stats_plugins) | **POST** /kai-ib/api/v2/stats/plugins | 
+[**delete_stats_plugin**](StatisticsApi.md#delete_stats_plugin) | **DELETE** /kai-ib/api/v2/stats/plugins/{pluginId} | 
+[**get_result_stat_by_id**](StatisticsApi.md#get_result_stat_by_id) | **GET** /kai-ib/api/v2/results/{resultId}/stats/{statId} | 
+[**get_result_stats**](StatisticsApi.md#get_result_stats) | **GET** /kai-ib/api/v2/results/{resultId}/stats | 
+[**get_stats_plugins**](StatisticsApi.md#get_stats_plugins) | **GET** /kai-ib/api/v2/stats/plugins | 
+[**start_stats_plugins_ingest**](StatisticsApi.md#start_stats_plugins_ingest) | **POST** /kai-ib/api/v2/stats/plugins/operations/ingest | 
+
+
+# **create_stats_plugins**
+> List[Plugin] create_stats_plugins(plugin=plugin)
+
+
+
+Create new plugins.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.plugin import Plugin
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.StatisticsApi(api_client)
+    plugin = [kai_inference_builder.Plugin()] # List[Plugin] |  (optional)
+
+    try:
+        api_response = api_instance.create_stats_plugins(plugin=plugin)
+        print("The response of StatisticsApi->create_stats_plugins:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatisticsApi->create_stats_plugins: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **plugin** | [**List[Plugin]**](Plugin.md)|  | [optional] 
+
+### Return type
+
+[**List[Plugin]**](Plugin.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Plugins created successfully. |  -  |
+**400** | Bad request |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_stats_plugin**
+> delete_stats_plugin(plugin_id)
+
+
+
+Delete a particular plugin.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.StatisticsApi(api_client)
+    plugin_id = 'plugin_id_example' # str | The ID of the plugin.
+
+    try:
+        api_instance.delete_stats_plugin(plugin_id)
+    except Exception as e:
+        print("Exception when calling StatisticsApi->delete_stats_plugin: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **plugin_id** | **str**| The ID of the plugin. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The plugin was successfully deleted. |  -  |
+**404** | A plugin with the specified name was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_result_stat_by_id**
+> StatsResult get_result_stat_by_id(result_id, stat_id, var_from=var_from, to=to, interval=interval, use_relative_time=use_relative_time)
+
+
+
+Query statistics
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.stats_result import StatsResult
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.StatisticsApi(api_client)
+    result_id = 'result_id_example' # str | The ID of the result.
+    stat_id = 'stat_id_example' # str | The ID of the stat.
+    var_from = 56 # int | (optional) UNIX time in milliseconds or milliseconds from the test start (based on useRelativeTime flag) as the query interval start. Defaults to 'now-5m' (in milliseconds) for false useRelativeTime, and 0 otherwise. (optional)
+    to = 56 # int | (optional) UNIX time in milliseconds or milliseconds from the test start (based on useRelativeTime flag) as the query interval end. Defaults to 'now-7s' (in milliseconds). (optional)
+    interval = 56 # int | (optional) The interval used to aggregate the statistics snapshots (optional)
+    use_relative_time = True # bool | (optional) Specifies if the from/to params use milliseconds from test start or UNIX time in milliseconds (optional)
+
+    try:
+        api_response = api_instance.get_result_stat_by_id(result_id, stat_id, var_from=var_from, to=to, interval=interval, use_relative_time=use_relative_time)
+        print("The response of StatisticsApi->get_result_stat_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatisticsApi->get_result_stat_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **result_id** | **str**| The ID of the result. | 
+ **stat_id** | **str**| The ID of the stat. | 
+ **var_from** | **int**| (optional) UNIX time in milliseconds or milliseconds from the test start (based on useRelativeTime flag) as the query interval start. Defaults to &#39;now-5m&#39; (in milliseconds) for false useRelativeTime, and 0 otherwise. | [optional] 
+ **to** | **int**| (optional) UNIX time in milliseconds or milliseconds from the test start (based on useRelativeTime flag) as the query interval end. Defaults to &#39;now-7s&#39; (in milliseconds). | [optional] 
+ **interval** | **int**| (optional) The interval used to aggregate the statistics snapshots | [optional] 
+ **use_relative_time** | **bool**| (optional) Specifies if the from/to params use milliseconds from test start or UNIX time in milliseconds | [optional] 
+
+### Return type
+
+[**StatsResult**](StatsResult.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully queried the statistics |  -  |
+**400** | Bad request |  -  |
+**404** | A result with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_result_stats**
+> GetResultStats200Response get_result_stats(result_id, take=take, skip=skip)
+
+
+
+Get all the available queries.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_result_stats200_response import GetResultStats200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.StatisticsApi(api_client)
+    result_id = 'result_id_example' # str | The ID of the result.
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_result_stats(result_id, take=take, skip=skip)
+        print("The response of StatisticsApi->get_result_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatisticsApi->get_result_stats: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **result_id** | **str**| The ID of the result. | 
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetResultStats200Response**](GetResultStats200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The available statistics views of the current result |  -  |
+**400** | Bad request |  -  |
+**404** | A result with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_stats_plugins**
+> GetStatsPlugins200Response get_stats_plugins(take=take, skip=skip)
+
+
+
+List all the plugins.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_stats_plugins200_response import GetStatsPlugins200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.StatisticsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_stats_plugins(take=take, skip=skip)
+        print("The response of StatisticsApi->get_stats_plugins:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatisticsApi->get_stats_plugins: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetStatsPlugins200Response**](GetStatsPlugins200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of available plugins |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_stats_plugins_ingest**
+> AsyncContext start_stats_plugins_ingest(ingest_operation=ingest_operation)
+
+
+
+Ingest the plugin statistics.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.models.ingest_operation import IngestOperation
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.StatisticsApi(api_client)
+    ingest_operation = kai_inference_builder.IngestOperation() # IngestOperation |  (optional)
+
+    try:
+        api_response = api_instance.start_stats_plugins_ingest(ingest_operation=ingest_operation)
+        print("The response of StatisticsApi->start_stats_plugins_ingest:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatisticsApi->start_stats_plugins_ingest: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ingest_operation** | [**IngestOperation**](IngestOperation.md)|  | [optional] 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
