@@ -1,0 +1,1464 @@
+# kai_inference_builder.SessionsApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_session_meta**](SessionsApi.md#create_session_meta) | **POST** /kai-ib/api/v2/sessions/{sessionId}/meta | 
+[**create_sessions**](SessionsApi.md#create_sessions) | **POST** /kai-ib/api/v2/sessions | 
+[**delete_session**](SessionsApi.md#delete_session) | **DELETE** /kai-ib/api/v2/sessions/{sessionId} | 
+[**delete_session_meta**](SessionsApi.md#delete_session_meta) | **DELETE** /kai-ib/api/v2/sessions/{sessionId}/meta/{metaId} | 
+[**get_session_by_id**](SessionsApi.md#get_session_by_id) | **GET** /kai-ib/api/v2/sessions/{sessionId} | 
+[**get_session_meta**](SessionsApi.md#get_session_meta) | **GET** /kai-ib/api/v2/sessions/{sessionId}/meta | 
+[**get_session_meta_by_id**](SessionsApi.md#get_session_meta_by_id) | **GET** /kai-ib/api/v2/sessions/{sessionId}/meta/{metaId} | 
+[**get_session_test**](SessionsApi.md#get_session_test) | **GET** /kai-ib/api/v2/sessions/{sessionId}/test | 
+[**get_sessions**](SessionsApi.md#get_sessions) | **GET** /kai-ib/api/v2/sessions | 
+[**patch_session**](SessionsApi.md#patch_session) | **PATCH** /kai-ib/api/v2/sessions/{sessionId} | 
+[**patch_session_meta**](SessionsApi.md#patch_session_meta) | **PATCH** /kai-ib/api/v2/sessions/{sessionId}/meta/{metaId} | 
+[**patch_session_test**](SessionsApi.md#patch_session_test) | **PATCH** /kai-ib/api/v2/sessions/{sessionId}/test | 
+[**start_session_load_config**](SessionsApi.md#start_session_load_config) | **POST** /kai-ib/api/v2/sessions/{sessionId}/operations/loadConfig | 
+[**start_session_touch**](SessionsApi.md#start_session_touch) | **POST** /kai-ib/api/v2/sessions/{sessionId}/operations/touch | 
+[**start_sessions_batch_delete**](SessionsApi.md#start_sessions_batch_delete) | **POST** /kai-ib/api/v2/sessions/operations/batch-delete | 
+[**update_session**](SessionsApi.md#update_session) | **PUT** /kai-ib/api/v2/sessions/{sessionId} | 
+[**update_session_meta**](SessionsApi.md#update_session_meta) | **PUT** /kai-ib/api/v2/sessions/{sessionId}/meta | 
+[**update_session_test**](SessionsApi.md#update_session_test) | **PUT** /kai-ib/api/v2/sessions/{sessionId}/test | 
+
+
+# **create_session_meta**
+> List[Pair] create_session_meta(session_id, pair=pair)
+
+
+
+Create a new session metadata.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.pair import Pair
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    pair = [kai_inference_builder.Pair()] # List[Pair] |  (optional)
+
+    try:
+        api_response = api_instance.create_session_meta(session_id, pair=pair)
+        print("The response of SessionsApi->create_session_meta:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->create_session_meta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **pair** | [**List[Pair]**](Pair.md)|  | [optional] 
+
+### Return type
+
+[**List[Pair]**](Pair.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Session metadata created successfully. |  -  |
+**400** | Bad request |  -  |
+**404** | A session with the specified ID was not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_sessions**
+> List[Session] create_sessions(session=session)
+
+
+
+Create a new session by providing the URL of the configuration to be loaded.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.session import Session
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session = [kai_inference_builder.Session()] # List[Session] |  (optional)
+
+    try:
+        api_response = api_instance.create_sessions(session=session)
+        print("The response of SessionsApi->create_sessions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->create_sessions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session** | [**List[Session]**](Session.md)|  | [optional] 
+
+### Return type
+
+[**List[Session]**](Session.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Session created successfully. |  -  |
+**400** | Bad request |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_session**
+> delete_session(session_id)
+
+
+
+Delete a particular session.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+
+    try:
+        api_instance.delete_session(session_id)
+    except Exception as e:
+        print("Exception when calling SessionsApi->delete_session: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The session was successfully deleted. |  -  |
+**400** | Bad request |  -  |
+**403** | The initiator of the request does not have enough privileges to perform the action. |  -  |
+**404** | A session with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_session_meta**
+> delete_session_meta(session_id, meta_id)
+
+
+
+Delete a particular session metadata pair.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    meta_id = 'meta_id_example' # str | The ID of the meta.
+
+    try:
+        api_instance.delete_session_meta(session_id, meta_id)
+    except Exception as e:
+        print("Exception when calling SessionsApi->delete_session_meta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **meta_id** | **str**| The ID of the meta. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The session metadata was successfully deleted. |  -  |
+**400** | Bad request |  -  |
+**404** | A session or metadata with the specified IDs were not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_session_by_id**
+> Session get_session_by_id(session_id, include=include)
+
+
+
+Get a particular session.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.session import Session
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    include = 'include_example' # str | Specifies if the sub-fields that are objects should be included (eg. test). (optional)
+
+    try:
+        api_response = api_instance.get_session_by_id(session_id, include=include)
+        print("The response of SessionsApi->get_session_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->get_session_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **include** | **str**| Specifies if the sub-fields that are objects should be included (eg. test). | [optional] 
+
+### Return type
+
+[**Session**](Session.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested session |  -  |
+**404** | A session with the specified ID was not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_session_meta**
+> GetSessionMeta200Response get_session_meta(session_id, take=take, skip=skip)
+
+
+
+Get the metadata of a particular session.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_session_meta200_response import GetSessionMeta200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_session_meta(session_id, take=take, skip=skip)
+        print("The response of SessionsApi->get_session_meta:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->get_session_meta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetSessionMeta200Response**](GetSessionMeta200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested session metadata |  -  |
+**404** | A session with the specified ID was not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_session_meta_by_id**
+> Pair get_session_meta_by_id(session_id, meta_id)
+
+
+
+Get a particular session metadata pair.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.pair import Pair
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    meta_id = 'meta_id_example' # str | The ID of the meta.
+
+    try:
+        api_response = api_instance.get_session_meta_by_id(session_id, meta_id)
+        print("The response of SessionsApi->get_session_meta_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->get_session_meta_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **meta_id** | **str**| The ID of the meta. | 
+
+### Return type
+
+[**Pair**](Pair.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested session metadata pair |  -  |
+**404** | A session or metadata with the specified IDs were not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_session_test**
+> TestInfo get_session_test(session_id)
+
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.test_info import TestInfo
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+
+    try:
+        api_response = api_instance.get_session_test(session_id)
+        print("The response of SessionsApi->get_session_test:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->get_session_test: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+
+### Return type
+
+[**TestInfo**](TestInfo.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_sessions**
+> GetSessions200Response get_sessions(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort, include=include)
+
+
+
+List all the sessions.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_sessions200_response import GetSessions200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+    search_col = 'search_col_example' # str | A list of comma-separated columns used to search for the supplied values (optional)
+    search_val = 'search_val_example' # str | The keywords used to filter the items (optional)
+    filter_mode = 'filter_mode_example' # str | The operator applied to the supplied values (optional)
+    sort = 'sort_example' # str | A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc (optional)
+    include = 'include_example' # str | Specifies if the sub-fields that are objects should be included. (optional)
+
+    try:
+        api_response = api_instance.get_sessions(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort, include=include)
+        print("The response of SessionsApi->get_sessions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->get_sessions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+ **search_col** | **str**| A list of comma-separated columns used to search for the supplied values | [optional] 
+ **search_val** | **str**| The keywords used to filter the items | [optional] 
+ **filter_mode** | **str**| The operator applied to the supplied values | [optional] 
+ **sort** | **str**| A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc | [optional] 
+ **include** | **str**| Specifies if the sub-fields that are objects should be included. | [optional] 
+
+### Return type
+
+[**GetSessions200Response**](GetSessions200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of available sessions |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_session**
+> patch_session(session_id, session=session)
+
+
+
+Update a particular session. Only non-null fields are updated.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.session import Session
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    session = kai_inference_builder.Session() # Session |  (optional)
+
+    try:
+        api_instance.patch_session(session_id, session=session)
+    except Exception as e:
+        print("Exception when calling SessionsApi->patch_session: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **session** | [**Session**](Session.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The session was successfully updated. |  -  |
+**404** | A session with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_session_meta**
+> patch_session_meta(session_id, meta_id, pair=pair)
+
+
+
+Update a particular session metadata pair. Only non-null fields are updated.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.pair import Pair
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    meta_id = 'meta_id_example' # str | The ID of the meta.
+    pair = kai_inference_builder.Pair() # Pair |  (optional)
+
+    try:
+        api_instance.patch_session_meta(session_id, meta_id, pair=pair)
+    except Exception as e:
+        print("Exception when calling SessionsApi->patch_session_meta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **meta_id** | **str**| The ID of the meta. | 
+ **pair** | [**Pair**](Pair.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The session metadata pair was successfully updated. |  -  |
+**400** | Bad request |  -  |
+**404** | A session or metadata with the specified IDs were not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_session_test**
+> patch_session_test(session_id, test_info=test_info)
+
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.test_info import TestInfo
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    test_info = kai_inference_builder.TestInfo() # TestInfo |  (optional)
+
+    try:
+        api_instance.patch_session_test(session_id, test_info=test_info)
+    except Exception as e:
+        print("Exception when calling SessionsApi->patch_session_test: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **test_info** | [**TestInfo**](TestInfo.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The request was completed successfully. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_session_load_config**
+> AsyncContext start_session_load_config(session_id, load_config_operation=load_config_operation)
+
+
+
+Load a new test in the current session.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.models.load_config_operation import LoadConfigOperation
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    load_config_operation = kai_inference_builder.LoadConfigOperation() # LoadConfigOperation |  (optional)
+
+    try:
+        api_response = api_instance.start_session_load_config(session_id, load_config_operation=load_config_operation)
+        print("The response of SessionsApi->start_session_load_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->start_session_load_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **load_config_operation** | [**LoadConfigOperation**](LoadConfigOperation.md)|  | [optional] 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_session_touch**
+> AsyncContext start_session_touch(session_id, start_agents_batch_delete_request_inner=start_agents_batch_delete_request_inner)
+
+
+
+Update last visited field when session is touched.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.models.start_agents_batch_delete_request_inner import StartAgentsBatchDeleteRequestInner
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    start_agents_batch_delete_request_inner = kai_inference_builder.StartAgentsBatchDeleteRequestInner() # StartAgentsBatchDeleteRequestInner |  (optional)
+
+    try:
+        api_response = api_instance.start_session_touch(session_id, start_agents_batch_delete_request_inner=start_agents_batch_delete_request_inner)
+        print("The response of SessionsApi->start_session_touch:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->start_session_touch: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **start_agents_batch_delete_request_inner** | [**StartAgentsBatchDeleteRequestInner**](StartAgentsBatchDeleteRequestInner.md)|  | [optional] 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_sessions_batch_delete**
+> AsyncContext start_sessions_batch_delete(start_agents_batch_delete_request_inner=start_agents_batch_delete_request_inner)
+
+
+
+Remove multiple sessions.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.models.start_agents_batch_delete_request_inner import StartAgentsBatchDeleteRequestInner
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    start_agents_batch_delete_request_inner = kai_inference_builder.StartAgentsBatchDeleteRequestInner() # StartAgentsBatchDeleteRequestInner |  (optional)
+
+    try:
+        api_response = api_instance.start_sessions_batch_delete(start_agents_batch_delete_request_inner=start_agents_batch_delete_request_inner)
+        print("The response of SessionsApi->start_sessions_batch_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->start_sessions_batch_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_agents_batch_delete_request_inner** | [**StartAgentsBatchDeleteRequestInner**](StartAgentsBatchDeleteRequestInner.md)|  | [optional] 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_session**
+> Session update_session(session_id, session=session)
+
+
+
+Update a particular session.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.session import Session
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    session = kai_inference_builder.Session() # Session |  (optional)
+
+    try:
+        api_response = api_instance.update_session(session_id, session=session)
+        print("The response of SessionsApi->update_session:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->update_session: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **session** | [**Session**](Session.md)|  | [optional] 
+
+### Return type
+
+[**Session**](Session.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated session |  -  |
+**400** | Bad request |  -  |
+**404** | A session with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_session_meta**
+> List[Pair] update_session_meta(session_id, pair=pair)
+
+
+
+Update the session metadata.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.pair import Pair
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    pair = [kai_inference_builder.Pair()] # List[Pair] |  (optional)
+
+    try:
+        api_response = api_instance.update_session_meta(session_id, pair=pair)
+        print("The response of SessionsApi->update_session_meta:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->update_session_meta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **pair** | [**List[Pair]**](Pair.md)|  | [optional] 
+
+### Return type
+
+[**List[Pair]**](Pair.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated session metadata |  -  |
+**404** | A session with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_session_test**
+> TestInfo update_session_test(session_id, test_info=test_info)
+
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.test_info import TestInfo
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.SessionsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    test_info = kai_inference_builder.TestInfo() # TestInfo |  (optional)
+
+    try:
+        api_response = api_instance.update_session_test(session_id, test_info=test_info)
+        print("The response of SessionsApi->update_session_test:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SessionsApi->update_session_test: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **test_info** | [**TestInfo**](TestInfo.md)|  | [optional] 
+
+### Return type
+
+[**TestInfo**](TestInfo.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

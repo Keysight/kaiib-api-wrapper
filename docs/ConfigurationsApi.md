@@ -1,0 +1,1133 @@
+# kai_inference_builder.ConfigurationsApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_configs**](ConfigurationsApi.md#create_configs) | **POST** /kai-ib/api/v2/configs | 
+[**delete_config**](ConfigurationsApi.md#delete_config) | **DELETE** /kai-ib/api/v2/configs/{configId} | 
+[**get_config_by_id**](ConfigurationsApi.md#get_config_by_id) | **GET** /kai-ib/api/v2/configs/{configId} | 
+[**get_config_categorie_by_id**](ConfigurationsApi.md#get_config_categorie_by_id) | **GET** /kai-ib/api/v2/config-categories/{configCategorieId} | 
+[**get_config_categorie_subcategories**](ConfigurationsApi.md#get_config_categorie_subcategories) | **GET** /kai-ib/api/v2/config-categories/{configCategorieId}/subcategories | 
+[**get_config_categories**](ConfigurationsApi.md#get_config_categories) | **GET** /kai-ib/api/v2/config-categories | 
+[**get_configs**](ConfigurationsApi.md#get_configs) | **GET** /kai-ib/api/v2/configs | 
+[**get_resources_custom_import_operations**](ConfigurationsApi.md#get_resources_custom_import_operations) | **GET** /kai-ib/api/v2/resources/custom-import-operations | 
+[**patch_config**](ConfigurationsApi.md#patch_config) | **PATCH** /kai-ib/api/v2/configs/{configId} | 
+[**start_configs_batch_delete**](ConfigurationsApi.md#start_configs_batch_delete) | **POST** /kai-ib/api/v2/configs/operations/batch-delete | 
+[**start_configs_export_all**](ConfigurationsApi.md#start_configs_export_all) | **POST** /kai-ib/api/v2/configs/operations/exportAll | 
+[**start_configs_import**](ConfigurationsApi.md#start_configs_import) | **POST** /kai-ib/api/v2/configs/operations/import | 
+[**start_configs_import_all**](ConfigurationsApi.md#start_configs_import_all) | **POST** /kai-ib/api/v2/configs/operations/importAll | 
+[**update_config**](ConfigurationsApi.md#update_config) | **PUT** /kai-ib/api/v2/configs/{configId} | 
+
+
+# **create_configs**
+> List[ConfigMetadata] create_configs(config_metadata=config_metadata)
+
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.config_metadata import ConfigMetadata
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    config_metadata = [kai_inference_builder.ConfigMetadata()] # List[ConfigMetadata] |  (optional)
+
+    try:
+        api_response = api_instance.create_configs(config_metadata=config_metadata)
+        print("The response of ConfigurationsApi->create_configs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->create_configs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_metadata** | [**List[ConfigMetadata]**](ConfigMetadata.md)|  | [optional] 
+
+### Return type
+
+[**List[ConfigMetadata]**](ConfigMetadata.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Resource successfully created. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_config**
+> delete_config(config_id)
+
+
+
+Delete a particular configuration.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    config_id = 'config_id_example' # str | The ID of the config.
+
+    try:
+        api_instance.delete_config(config_id)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->delete_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_id** | **str**| The ID of the config. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The configuration was successfully deleted. |  -  |
+**403** | The initiator of the request does not have enough privileges to perform the action. |  -  |
+**404** | A configuration with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_config_by_id**
+> ConfigMetadata get_config_by_id(config_id, include=include, resolve_dependencies=resolve_dependencies)
+
+
+
+Get a particular configuration.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.config_metadata import ConfigMetadata
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    config_id = 'config_id_example' # str | The ID of the config.
+    include = 'include_example' # str | Specifies if the sub-fields that are objects should be included (eg. 'configData'). (optional)
+    resolve_dependencies = 'resolve_dependencies_example' # str | Specifies if the content of the referenced files (action payloads and TLS files) should be included. (optional)
+
+    try:
+        api_response = api_instance.get_config_by_id(config_id, include=include, resolve_dependencies=resolve_dependencies)
+        print("The response of ConfigurationsApi->get_config_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_config_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_id** | **str**| The ID of the config. | 
+ **include** | **str**| Specifies if the sub-fields that are objects should be included (eg. &#39;configData&#39;). | [optional] 
+ **resolve_dependencies** | **str**| Specifies if the content of the referenced files (action payloads and TLS files) should be included. | [optional] 
+
+### Return type
+
+[**ConfigMetadata**](ConfigMetadata.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/x-zip, application/zip, multipart/form-data
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested configuration |  -  |
+**404** | A configuration with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_config_categorie_by_id**
+> ConfigCategory get_config_categorie_by_id(config_categorie_id)
+
+
+
+returns a single configuration category with its subcategories.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.config_category import ConfigCategory
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    config_categorie_id = 'config_categorie_id_example' # str | The ID of the config categorie.
+
+    try:
+        api_response = api_instance.get_config_categorie_by_id(config_categorie_id)
+        print("The response of ConfigurationsApi->get_config_categorie_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_config_categorie_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_categorie_id** | **str**| The ID of the config categorie. | 
+
+### Return type
+
+[**ConfigCategory**](ConfigCategory.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The filtered configuration category with subcategories |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_config_categorie_subcategories**
+> GetConfigCategorieSubcategories200Response get_config_categorie_subcategories(config_categorie_id, take=take, skip=skip)
+
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_config_categorie_subcategories200_response import GetConfigCategorieSubcategories200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    config_categorie_id = 'config_categorie_id_example' # str | The ID of the config categorie.
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_config_categorie_subcategories(config_categorie_id, take=take, skip=skip)
+        print("The response of ConfigurationsApi->get_config_categorie_subcategories:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_config_categorie_subcategories: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_categorie_id** | **str**| The ID of the config categorie. | 
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetConfigCategorieSubcategories200Response**](GetConfigCategorieSubcategories200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of subcategories for the specified category |  -  |
+**400** | Missing or invalid category parameter |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_config_categories**
+> GetConfigCategories200Response get_config_categories(take=take, skip=skip)
+
+
+
+Get the list of available configuration categories.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_config_categories200_response import GetConfigCategories200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_config_categories(take=take, skip=skip)
+        print("The response of ConfigurationsApi->get_config_categories:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_config_categories: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetConfigCategories200Response**](GetConfigCategories200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of configuration categories |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_configs**
+> GetConfigs200Response get_configs(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort)
+
+
+
+Get all the configurations available to the current user.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_configs200_response import GetConfigs200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+    search_col = 'search_col_example' # str | A list of comma-separated columns used to search for the supplied values (optional)
+    search_val = 'search_val_example' # str | The keywords used to filter the items (optional)
+    filter_mode = 'filter_mode_example' # str | The operator applied to the supplied values (optional)
+    sort = 'sort_example' # str | A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc (optional)
+
+    try:
+        api_response = api_instance.get_configs(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort)
+        print("The response of ConfigurationsApi->get_configs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_configs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+ **search_col** | **str**| A list of comma-separated columns used to search for the supplied values | [optional] 
+ **search_val** | **str**| The keywords used to filter the items | [optional] 
+ **filter_mode** | **str**| The operator applied to the supplied values | [optional] 
+ **sort** | **str**| A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc | [optional] 
+
+### Return type
+
+[**GetConfigs200Response**](GetConfigs200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of configurations |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_resources_custom_import_operations**
+> GetResourcesCustomImportOperations200Response get_resources_custom_import_operations(take=take, skip=skip)
+
+
+
+Get all the custom import config operations.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.get_resources_custom_import_operations200_response import GetResourcesCustomImportOperations200Response
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_resources_custom_import_operations(take=take, skip=skip)
+        print("The response of ConfigurationsApi->get_resources_custom_import_operations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_resources_custom_import_operations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetResourcesCustomImportOperations200Response**](GetResourcesCustomImportOperations200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of custom import config operations |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_config**
+> patch_config(config_id, config_metadata=config_metadata)
+
+
+
+Update a particular configuration. Only non-null fields are updated.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.config_metadata import ConfigMetadata
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    config_id = 'config_id_example' # str | The ID of the config.
+    config_metadata = kai_inference_builder.ConfigMetadata() # ConfigMetadata |  (optional)
+
+    try:
+        api_instance.patch_config(config_id, config_metadata=config_metadata)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->patch_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_id** | **str**| The ID of the config. | 
+ **config_metadata** | [**ConfigMetadata**](ConfigMetadata.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The configuration was successfully updated. |  -  |
+**404** | A configuration with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_configs_batch_delete**
+> AsyncContext start_configs_batch_delete(start_agents_batch_delete_request_inner=start_agents_batch_delete_request_inner)
+
+
+
+Remove multiple configurations.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.models.start_agents_batch_delete_request_inner import StartAgentsBatchDeleteRequestInner
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    start_agents_batch_delete_request_inner = [kai_inference_builder.StartAgentsBatchDeleteRequestInner()] # List[StartAgentsBatchDeleteRequestInner] |  (optional)
+
+    try:
+        api_response = api_instance.start_configs_batch_delete(start_agents_batch_delete_request_inner=start_agents_batch_delete_request_inner)
+        print("The response of ConfigurationsApi->start_configs_batch_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->start_configs_batch_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_agents_batch_delete_request_inner** | [**List[StartAgentsBatchDeleteRequestInner]**](StartAgentsBatchDeleteRequestInner.md)|  | [optional] 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_configs_export_all**
+> AsyncContext start_configs_export_all(export_all_operation=export_all_operation)
+
+
+
+Export all configurations owned by the current user. Optionally, provide a list of config IDs to export.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.models.export_all_operation import ExportAllOperation
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    export_all_operation = kai_inference_builder.ExportAllOperation() # ExportAllOperation |  (optional)
+
+    try:
+        api_response = api_instance.start_configs_export_all(export_all_operation=export_all_operation)
+        print("The response of ConfigurationsApi->start_configs_export_all:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->start_configs_export_all: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **export_all_operation** | [**ExportAllOperation**](ExportAllOperation.md)|  | [optional] 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_configs_import**
+> AsyncContext start_configs_import()
+
+
+
+Import a single configuration from the specified file.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+
+    try:
+        api_response = api_instance.start_configs_import()
+        print("The response of ConfigurationsApi->start_configs_import:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->start_configs_import: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_configs_import_all**
+> AsyncContext start_configs_import_all(import_all_operation=import_all_operation)
+
+
+
+Import all configurations from the specified file.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.async_context import AsyncContext
+from kai_inference_builder.models.import_all_operation import ImportAllOperation
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    import_all_operation = kai_inference_builder.ImportAllOperation() # ImportAllOperation |  (optional)
+
+    try:
+        api_response = api_instance.start_configs_import_all(import_all_operation=import_all_operation)
+        print("The response of ConfigurationsApi->start_configs_import_all:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->start_configs_import_all: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **import_all_operation** | [**ImportAllOperation**](ImportAllOperation.md)|  | [optional] 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_config**
+> ConfigMetadata update_config(config_id, config_metadata=config_metadata)
+
+
+
+Update a particular configuration.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import kai_inference_builder
+from kai_inference_builder.models.config_metadata import ConfigMetadata
+from kai_inference_builder.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kai_inference_builder.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+configuration.refresh_token = os.environ["OFFLINE_TOKEN_FROM_KAI_IB_UI"]
+
+# Enter a context with an instance of the API client
+with kai_inference_builder.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kai_inference_builder.ConfigurationsApi(api_client)
+    config_id = 'config_id_example' # str | The ID of the config.
+    config_metadata = kai_inference_builder.ConfigMetadata() # ConfigMetadata |  (optional)
+
+    try:
+        api_response = api_instance.update_config(config_id, config_metadata=config_metadata)
+        print("The response of ConfigurationsApi->update_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->update_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_id** | **str**| The ID of the config. | 
+ **config_metadata** | [**ConfigMetadata**](ConfigMetadata.md)|  | [optional] 
+
+### Return type
+
+[**ConfigMetadata**](ConfigMetadata.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated configuration |  -  |
+**400** | Bad request |  -  |
+**404** | A configuration with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
